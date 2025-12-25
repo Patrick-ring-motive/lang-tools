@@ -27,14 +27,18 @@
     const url = 'https://script.google.com/macros/s/AKfycbysP0aDmhtMNJ7edT3NI9S0oQfFyz9ZLv06F4I8RyC5ZMfOIRBujOz4hY90k4Fq4R17UA/exec';
     
     const fetchText = async(...args)=>(await fetch(...args)).text();
-    
+    const memo = new Map();
     async function fixText(text,lang){
+      const key = `${lang}|${text}`;
+      if(memo.has(key))return memo.get(key);
       const payload = JSON.stringify({text,lang});
-      return (fetchText(`${url}`,{
+      const response = (fetchText(`${url}`,{
         method:"POST",
         body:encodeURIComponent(payload)
       }));
-    }
+      memo.set(key,response);
+      return response;
+    };
     document.querySelector('#paragraph').onchange = ()=>{
       document.original = document.querySelector('#paragraph')?.value;
     };
