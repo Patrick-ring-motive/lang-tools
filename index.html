@@ -30,7 +30,7 @@
         body:encodeURIComponent(payload)
       }));
     }
-    for(const el of [...document.querySelector('input')]){
+    for(const el of [...document.querySelectorAll('input')]){
       el.onclick = async(e)=>{
         document.original ??= document.querySelector('#original')?.value;
         const text = document.original;
