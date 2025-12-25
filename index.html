@@ -34,8 +34,10 @@
       el.onclick = async(e)=>{
         document.original ??= document.querySelector('#original')?.innerText;
         const text = document.original;
+        console.log({text});
         const lang = e?.target?.getAttribute?.('lang');
         const fixed = await fixText(text,lang);
+        console.log({fixed});
         (document.querySelector('#original')??{}).value = fixed;
       };
     }
