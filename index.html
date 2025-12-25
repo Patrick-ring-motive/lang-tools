@@ -30,6 +30,12 @@
         body:encodeURIComponent(payload)
       }));
     }
+    document.querySelector('#original').onchange = ()=>{
+      document.original = document.querySelector('#original')?.value;
+    };
+    document.querySelector('#original').onkeyup = ()=>{
+      document.original = document.querySelector('#original')?.value;
+    };
     for(const el of [...document.querySelectorAll('input')]){
       el.onclick = async(e)=>{
         document.original ??= document.querySelector('#original')?.value;
