@@ -17,3 +17,16 @@
     <label for="formal">formal</label>
   </div>
 </fieldset>
+<script>
+            const url = 'https://script.google.com/macros/s/AKfycbxpupps7FMlOBGgJ8LT2ZqajU5qFwGyLWCgZeXp8KKzb5rt_3txtjarqv3YjNmubKwleg/exec';
+            
+            const fetchText = async(...args)=>(await fetch(...args)).text();
+            
+            async function fixText(text,lang){
+              const payload = JSON.stringify({text,lang});
+            	return (fetchText(`${url}`,{
+            		method:"POST",
+            		body:encodeURIComponent(payload)
+            	}));
+            }
+</script>
