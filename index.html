@@ -35,21 +35,21 @@
         body:encodeURIComponent(payload)
       }));
     }
-    document.querySelector('#original').onchange = ()=>{
-      document.original = document.querySelector('#original')?.value;
+    document.querySelector('#paragraph').onchange = ()=>{
+      document.original = document.querySelector('#paragraph')?.value;
     };
-    document.querySelector('#original').onkeyup = ()=>{
-      document.original = document.querySelector('#original')?.value;
+    document.querySelector('#paragraph').onkeyup = ()=>{
+      document.original = document.querySelector('#paragraph')?.value;
     };
     for(const el of [...document.querySelectorAll('input')]){
       el.onclick = async(e)=>{
-        document.original ??= document.querySelector('#original')?.value;
+        document.original ??= document.querySelector('#paragraph')?.value;
         const text = document.original;
         console.log({text});
         const lang = e?.target?.getAttribute?.('lang');
         const fixed = await fixText(text,lang);
         console.log({fixed});
-        (document.querySelector('#original')??{}).value = fixed;
+        (document.querySelector('#paragraph')??{}).value = fixed;
       };
     }
   })();
