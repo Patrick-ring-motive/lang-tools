@@ -1,6 +1,6 @@
 <style>
-  input,label{
-    width:fit-content;
+  fieldset, fieldset *{
+    width:fit-content !important;
   }
 </style>
 <textarea id="paragraph"></textarea>
@@ -45,7 +45,7 @@
     document.querySelector('#paragraph').onkeyup = ()=>{
       document.original = document.querySelector('#paragraph')?.value;
     };
-    for(const el of [...document.querySelectorAll('input')]){
+    for(const el of [...document.querySelectorAll('input:not(#original)')]){
       el.onclick = async(e)=>{
         document.original ??= document.querySelector('#paragraph')?.value;
         const text = document.original;
