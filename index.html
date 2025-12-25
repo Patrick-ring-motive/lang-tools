@@ -32,7 +32,7 @@
     }
     for(const el of [...document.querySelectorAll('input')]){
       el.onclick = async(e)=>{
-        document.original ??= document.querySelector('#original')?.innerText;
+        document.original ??= document.querySelector('#original')?.value;
         const text = document.original;
         console.log({text});
         const lang = e?.target?.getAttribute?.('lang');
