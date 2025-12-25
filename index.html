@@ -45,6 +45,9 @@
     document.querySelector('#paragraph').onkeyup = ()=>{
       document.original = document.querySelector('#paragraph')?.value;
     };
+    document.querySelector('input#original').onclick = ()=>{
+      if(document.original)(document.querySelector('#paragraph')??{}).value = document.original;
+    };
     for(const el of [...document.querySelectorAll('input:not(#original)')]){
       el.onclick = async(e)=>{
         document.original ??= document.querySelector('#paragraph')?.value;
