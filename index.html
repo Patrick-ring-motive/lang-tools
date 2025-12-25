@@ -35,7 +35,7 @@
       const text = document.original;
       const lang = e?.target?.getAttribute?.('lang');
       const fixed = await fixText(text,lang);
-      (document.querySelector('#original')?{}).innerText = fixed;
+      (document.querySelector('#original')??{}).innerText = fixed;
     };
   }
 </script>
