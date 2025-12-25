@@ -1,3 +1,46 @@
+<textarea id="paragraph"></textarea>
+<fieldset>
+  <legend>Paraphraser</legend>
+
+  <div>
+    <input type="radio" id="original" name="paragraph" value="original" lang="en" checked />
+    <label for="original">original</label>
+  </div>
+
+  <div>
+    <input type="radio" id="fancy" name="paragraph" value="fancy" lang="fr" />
+    <label for="fancy">fancy</label>
+  </div>
+
+  <div>
+    <input type="radio" id="formal" name="paragraph" value="formal" lang="la"/>
+    <label for="formal">formal</label>
+  </div>
+</fieldset>
+<script>
+  (()=>{
+    const url = 'https://script.google.com/macros/s/AKfycbysP0aDmhtMNJ7edT3NI9S0oQfFyz9ZLv06F4I8RyC5ZMfOIRBujOz4hY90k4Fq4R17UA/exec';
+    
+    const fetchText = async(...args)=>(await fetch(...args)).text();
+    
+    async function fixText(text,lang){
+      const payload = JSON.stringify({text,lang});
+      return (fetchText(`${url}`,{
+        method:"POST",
+        body:encodeURIComponent(payload)
+      }));
+    }
+    for(const el of [...document.querySelector('input')]){
+      el.onclick = async(e)=>{
+        document.original ??= document.querySelector('#original')?.value;
+        const text = document.original;
+        const lang = e?.target?.getAttribute?.('lang');
+        const fixed = await fixText(text,lang);
+        (document.querySelector('#original')??{}).innerText = fixed;
+      };
+    }
+  })();
+</script>
 <style>
   /* -----------------------------
    Base Reset (modern, minimal)
@@ -186,46 +229,3 @@ img {
 
 
 </style>
-<textarea id="paragraph"></textarea>
-<fieldset>
-  <legend>Paraphraser</legend>
-
-  <div>
-    <input type="radio" id="original" name="paragraph" value="original" lang="en" checked />
-    <label for="original">original</label>
-  </div>
-
-  <div>
-    <input type="radio" id="fancy" name="paragraph" value="fancy" lang="fr" />
-    <label for="fancy">fancy</label>
-  </div>
-
-  <div>
-    <input type="radio" id="formal" name="paragraph" value="formal" lang="la"/>
-    <label for="formal">formal</label>
-  </div>
-</fieldset>
-<script>
-  (()=>{
-    const url = 'https://script.google.com/macros/s/AKfycbysP0aDmhtMNJ7edT3NI9S0oQfFyz9ZLv06F4I8RyC5ZMfOIRBujOz4hY90k4Fq4R17UA/exec';
-    
-    const fetchText = async(...args)=>(await fetch(...args)).text();
-    
-    async function fixText(text,lang){
-      const payload = JSON.stringify({text,lang});
-      return (fetchText(`${url}`,{
-        method:"POST",
-        body:encodeURIComponent(payload)
-      }));
-    }
-    for(const el of [...document.querySelector('input')]){
-      el.onclick = async(e)=>{
-        document.original ??= document.querySelector('#original')?.value;
-        const text = document.original;
-        const lang = e?.target?.getAttribute?.('lang');
-        const fixed = await fixText(text,lang);
-        (document.querySelector('#original')??{}).innerText = fixed;
-      };
-    }
-  })();
-</script>
