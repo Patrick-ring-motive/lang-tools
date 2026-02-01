@@ -29,7 +29,7 @@ const Str = x => {
         const fetchText = async (...args) => (await fetch(...args)).text();
 
          const langCache = {};
-        async function fixText(text,sourseLange='detect',targetLang='en') {
+        async function fixText(text,sourceLange='detect',targetLang='en') {
            if(!text?.trim?.()){
             return text;
            }
@@ -65,8 +65,8 @@ const Str = x => {
 const text = await proxyFetch('https://raw.githubusercontent.com/Patrick-ring-motive/tolkienizer/refs/heads/main/sil.txt');
 
 const texts = text.replace(/\s+/g,' ').split('.');
-
-const fr = await fixText(texts[950],'detect','fr');
+console.log(texts[905]);
+const fr = await fixText(texts[905],'detect','fr');
 
 const en = await fixText(fr,'detect','en');
 
