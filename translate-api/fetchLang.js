@@ -68,8 +68,8 @@ const texts = text.replace(/\s+/g,' ').split('. ');
 console.log(texts[902]);
 const fr = await fixText(texts[902],'detect','fr');
 
-const fr = await fixText(fr,'fy','en');
+const fy = await fixText(fr,'fy','en');
 
-const fr = await fixText(fy,'fr','en');
+const en = await fixText(fy,'fr','en');
 
 console.log(en);
