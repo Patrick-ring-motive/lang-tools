@@ -64,9 +64,9 @@ const Str = x => {
 
 const text = await proxyFetch('https://raw.githubusercontent.com/Patrick-ring-motive/tolkienizer/refs/heads/main/sil.txt');
 
-const texts = text.replace(/\s+/g,' ').split('.');
-console.log(texts[905]);
-const fr = await fixText(texts[905],'detect','fr');
+const texts = text.replace(/\s+/g,' ').split('. ');
+console.log(texts[904]);
+const fr = await fixText(texts[904],'detect','fr');
 
 const en = await fixText(fr,'detect','en');
 
