@@ -29,7 +29,7 @@ const Str = x => {
         const fetchText = async (...args) => (await fetch(...args)).text();
 
          const langCache = {};
-        async function fixText(text) {
+        async function fixText(text,sourseLange='detect',targetLang='en') {
            if(!text?.trim?.()){
             return text;
            }
@@ -39,8 +39,8 @@ const Str = x => {
             if (localStorage.getItem(text)) return localStorage.getItem(text);
             if(langCache[text])return JSON.parse(await langCache[text]).textOut;
             const payload = { text };
-            payload.sourceLang = 'detect';
-            payload.targetLang = 'en';
+            payload.sourceLang = sourceLang;
+            payload.targetLang = targetLang;
             langCache[text] = (fetchText(`${url}`, {
                 method: "POST",
                 body: encodeURIComponent(stringify(payload))
@@ -58,3 +58,16 @@ const Str = x => {
             }
             return out || text;
         }
+
+
+
+
+const text = await proxyFetch('https://raw.githubusercontent.com/Patrick-ring-motive/tolkienizer/refs/heads/main/sil.txt');
+
+const texts = text.replace(/\s+/g,' ').split('.');
+
+const fr = await fixText(texts[950],'detect','fr');
+
+const en = await fixText(fr,'detect','en');
+
+console.log(en);
