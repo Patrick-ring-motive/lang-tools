@@ -29,7 +29,7 @@ const Str = x => {
         const fetchText = async (...args) => (await fetch(...args)).text();
 
          const langCache = {};
-        async function fixText(text,sourceLange='detect',targetLang='en') {
+        async function fixText(text,sourceLang='detect',targetLang='en') {
            if(!text?.trim?.()){
             return text;
            }
