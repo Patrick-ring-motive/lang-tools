@@ -1,4 +1,12 @@
-        const Str = x => {
+
+const proxyFetch = async(url) =>{
+        const loc = `https://script.google.com/macros/s/AKfycbwj2FNO1v8aLy4lXWJ4_kLa4peAph8F7QLKTRDWAwMcHaAaG0IW_QFYLdmaAfa9VLc0/exec?${encodeURIComponent(url)}`;
+        const res = await fetch(loc);
+        return await res.text();
+}
+
+
+const Str = x => {
             try {
                 return String(x);
             } catch (e) {
