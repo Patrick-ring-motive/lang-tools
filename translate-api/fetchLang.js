@@ -18,7 +18,7 @@
         const url = 'https://script.google.com/macros/s/AKfycbzBFvLSewHPfKa0aemNWTO6PvXGhLzolyJkWlKVylPeCQNQIT3GoygE4k6pvTOYXoHC/exec';
 
 
-        const fetchText = async (...args) => (await lfetch(...args)).text();
+        const fetchText = async (...args) => (await fetch(...args)).text();
 
          const langCache = {};
         async function fixText(text) {
