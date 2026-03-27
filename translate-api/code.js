@@ -5,14 +5,29 @@ function cleanTranslate(textIn, sourceLang, targetLang, responsePayload) {
   const attempts = [];
   const seenOutputs = new Set();
 
-  const variants = [
-    { text: original, lowered: false },
-    { text: removeMarks(original), lowered: false },
-    { text: original.toLowerCase(), lowered: true },
-    { text: removeMarks(original).toLowerCase(), lowered: true },
+  const variants = [{
+      text: original,
+      lowered: false
+    },
+    {
+      text: removeMarks(original),
+      lowered: false
+    },
+    {
+      text: original.toLowerCase(),
+      lowered: true
+    },
+    {
+      text: removeMarks(original).toLowerCase(),
+      lowered: true
+    },
   ];
 
-  for (const { text, lowered } of variants) {
+  for (const {
+      text,
+      lowered
+    }
+    of variants) {
     if (!text || attempts.includes(text)) continue;
     attempts.push(text);
 
